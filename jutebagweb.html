@@ -66,26 +66,7 @@
     <section id="products">
         <h2>Our Bestsellers</h2>
         <div class="product-grid">
-            <a href="products.html"class="product">
-                <img src="images/img1.jpg" alt="Jute Bag 1">
-                <h3>Classic Jute Bag</h3>
-                <p>$15.99</p>
-                <button class="btn" onclick="but()">ADD TO CART</button>
-            </a>
-
-            <a href="products.html"class="product">
-                <img src="images/img2.jpg" alt="Jute Bag 2">
-                <h3>Eco Tote</h3>
-                <p>$12.99</p>
-                <button class="btn" onclick="but()">ADD TO CART</button>
-            </a>
-
-            <a href="products.html"class="product">
-                <img src="images/img3.jpg" alt="Jute Bag 3">
-                <h3>Handcrafted Jute Bag</h3>
-                <p>$18.99</p>
-                <button class="btn" onclick="but()">ADD TO CART</button>
-            </a>
+           
         </div>
     </section>
 
@@ -93,26 +74,7 @@
     <section id="latest-products">
         <h2>Latest Products</h2>
         <div class="product-grid">
-            <a href="products.html"class="product">
-                <img src="images/img4.jpg" alt="Jute Bag 4">
-                <h3>Elegant Jute Handbag</h3>
-                <p>$22.99</p>
-                <button class="btn" onclick="but()">ADD TO CART</button>
-            </a>
-
-            <a href="products.html"class="product">
-                <img src="images/img5.jpg" alt="Jute Bag 5">
-                <h3>Floral Print Jute Bag</h3>
-                <p>$19.49</p>
-                <button class="btn" onclick="but()">ADD TO CART</button>
-            </a>
-
-            <a href="products.html"class="product">
-                <img src="images/img6.jpg" alt="Jute Bag 6">
-                <h3>Stylish Carry Jute Bag</h3>
-                <p>$24.99</p>
-                <button class="btn" onclick="but()">ADD TO CART</button>
-            </a>
+           
         </div>
     </section>
 
@@ -155,8 +117,12 @@
         <p>&copy; 2025 Udaya Teja. All rights reserved.</p>
     </footer>
 
-    <script> 
-
+    <script>
+        function menubut() {
+            var slider = document.getElementById("slider");
+            var currentDisplay = window.getComputedStyle(slider).display;
+            slider.style.display = (currentDisplay === 'none') ? 'block' : 'none';
+            }
         document.addEventListener("DOMContentLoaded", () => {
             if (window.location.hash) {
                 const targetId = window.location.hash.substring(1);
@@ -165,22 +131,51 @@
                     targetElement.scrollIntoView({ behavior: "smooth" });
                 }
             }
-        });
     
-    function but(){
-        window.location.href = "products.html"; // Replace with the actual page URL
-    }
-
-    function redirectToCart() {
-        window.location.href = "cart.html";  // Redirects to cart page
-    }
-    function menubut() {
-    var slider = document.getElementById("slider");
-    var currentDisplay = window.getComputedStyle(slider).display;
-    slider.style.display = (currentDisplay === 'none') ? 'block' : 'none';
-}
-
-   
+            
+            function but(event) {
+                event.preventDefault(); // Prevents navigation when clicking the button
+                alert("Item added to cart!"); // Simulating add-to-cart functionality
+                window.location.href = "products.html";
+            }
+    
+            const bestsellers = [
+                { id: 1, name: "Classic Jute Bag", price: "$15.99", img: "images/img1.jpg" },
+                { id: 2, name: "Eco Tote", price: "$12.99", img: "images/img2.jpg" },
+                { id: 3, name: "Handcrafted Jute Bag", price: "$18.99", img: "images/img3.jpg" }
+            ];
+    
+            const latestProducts = [
+                { id: 4, name: "Elegant Jute Handbag", price: "$22.99", img: "images/img4.jpg" },
+                { id: 5, name: "Floral Print Jute Bag", price: "$19.49", img: "images/img5.jpg" },
+                { id: 6, name: "Stylish Carry Jute Bag", price: "$24.99", img: "images/img6.jpg" }
+            ];
+    
+            function renderProducts(products, containerSelector) {
+                const container = document.querySelector(containerSelector);
+                container.innerHTML = ""; // Clear existing content before adding
+    
+                products.forEach(product => {
+                    const productElement = document.createElement("a");
+                    productElement.href = "products.html";
+                    productElement.classList.add("product");
+                    productElement.innerHTML = `
+                        <img src="${product.img}" alt="${product.name}">
+                        <h3>${product.name}</h3>
+                        <p>${product.price}</p>
+                        <button class="btn" onclick="but(event)">ADD TO CART</button>
+                    `;
+                    container.appendChild(productElement);
+                });
+            }
+    
+            // Render bestsellers in #products section
+            renderProducts(bestsellers, "#products .product-grid");
+    
+            // Render latest products in #latest-products section
+            renderProducts(latestProducts, "#latest-products .product-grid");
+        });
     </script>
+    
 </body>
 </html>

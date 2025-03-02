@@ -1,4 +1,5 @@
 /* General Styles */
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -358,7 +359,8 @@ footer {
         display: none;
     }
     .logo-img {
-        height: 80px; /* Increased size for zoom effect */
+        height: 80px; 
+        width: 80px;/* Increased size for zoom effect */
         margin-right: 10px;
         border-radius: 100%; /* Adds curved edges */
         box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
