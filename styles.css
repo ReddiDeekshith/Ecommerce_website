@@ -304,7 +304,10 @@ img:hover {
     line-height: 1.6;
     color: #333;
 }
-
+hr{
+    margin-left: 10px;
+    margin-right: 10px;
+}
 #about .about-content {
     display: flex;
     flex-direction: column;
@@ -381,7 +384,7 @@ footer {
     }
     .slider li{
         padding: 10px;
-        margin-bottom: 20px;
+        margin-bottom: 10px;
         gap: 20px;
         
     }
@@ -403,4 +406,21 @@ footer {
     .slider .logo-container img{
         border-radius: 10px;
     }
+    .social-icons {
+        text-align: center;
+        margin-top: 20px; /* Adjust space below slider */
+    }
+    
+    .social-icons a {
+        color: #333; /* Default color */
+        font-size: 24px;
+        margin: 0 15px; /* Spacing between icons */
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    
+    .social-icons a:hover {
+        color: #ff6600; /* Change color on hover */
+    }
+    
 }
