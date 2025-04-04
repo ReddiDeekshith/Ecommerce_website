@@ -8,9 +8,7 @@ body {
 
 /* Product Page Layout */
 .product-container {
-    display: flex;
-    max-width: 1400px; /* Increased width */
-    margin: 50px auto;
+    display: flex;/* Increased width */
     background: white;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 128, 0, 0.25); /* Softer Green Shadow */
@@ -30,7 +28,7 @@ body {
 .image-slider {
     position: relative;
     width: 100%;
-    max-width: 500px;
+    max-width: 400px;
 }
 
 .image-slider img {
@@ -138,11 +136,23 @@ h1 {
     border: none;
     font-size: 20px;
     cursor: pointer;
+    max-width: 400px;
     width: 100%;
     border-radius: 6px;
     font-weight: bold;
 }
-
+.buy{
+    background: rgb(237, 172, 7); /* Green */
+    color: white;
+    padding: 16px;
+    max-width: 400px;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 6px;
+    font-weight: bold;
+}
 .add-to-cart:hover {
     background: #006400; /* Dark Green */
 }

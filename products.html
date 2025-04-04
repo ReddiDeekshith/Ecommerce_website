@@ -7,26 +7,76 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="productstyles.css">
     <script src="proscript.js" defer></script>
-    <script src="jutebags.js"></script>
+    <script src="jutebags.js" defer></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        .image-slider {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            overflow: hidden;
+        }
+
+        .image-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slider-image {
+            width: 100%;
+            display: none;
+        }
+
+        .slider-image.active {
+            display: block;
+        }
+
+        .arrow {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+    </style>
 </head>
 <body>
     <div class="slider" id="slider">
-        
         <div class="logo-container">
-            <div class="menu"><button onclick="menubut()">&#9776;</button></div>
+            <span class="brand-name">Udaya Teja</span>
+            <div class="menu"><button onclick="menubut()">x</button></div>
         </div>
         <ul>
             <li><a href="jutebagweb.html">Home</a></li><hr>
-            <li><a href="shop.html">Shop</a></li><hr>  <!-- Redirects to shop.html -->
+            <li><a href="shop.html">Shop</a></li> <hr>
             <li><a href="./jutebagweb.html#about">About</a></li><hr>
             <li><a href="./jutebagweb.html#contact">Contact</a></li><hr>
         </ul>
+        <div class="back-logo">
+            <img src="images/logo.png" alt="Udaya Teja Logo">
+        </div>
         <div class="social-icons">
             <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i></a>
         </div>
+        
+
     </div>
     <header>
         <div class="header-container">
@@ -38,34 +88,30 @@
             <nav>
                 <ul>
                     <li><a href="jutebagweb.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>  <!-- Redirects to shop.html -->
+                    <li><a href="shop.html">Shop</a></li>
                     <li><a href="./jutebagweb.html#about">About</a></li>
                     <li><a href="./jutebagweb.html#contact">Contact</a></li>
                 </ul>
             </nav>
-            <div>
+            <div class="cart-icon">
                 <a href="cart.html">
                     <img src="images/cart.png" alt="not found" height="60px" width="60px">
                 </a>
-
             </div>
         </div>
     </header>
-
+    
     <div class="product-container">
-        <!-- Image Section -->
         <div class="product-image">
-            <div class="image-slider">
-                <img src="images/img1.jpg" alt="Classic Jute Bag" class="active">
-                <img src="images/img2.jpg" alt="Classic Jute Bag Alternative">
-                <button class="arrow left">&lt;</button>
-                <button class="arrow right">&gt;</button>
+            <div class="image-slider" id="image-slider">
+                <button class="arrow left" onclick="prevImage()">&lt;</button>
+                <div class="image-wrapper" id="image-wrapper"></div>
+                <button class="arrow right" onclick="nextImage()">&gt;</button>
             </div>
         </div>
-
-        <!-- Product Details Section -->
         <div class="product-details">
-            <h1>Classic Jute Bag</h1>
+            <h1 id="product-name">Classic Jute Bag</h1>
+            <p id="product-des">Classic Jute Bag</p>
             <div class="ratings">
                 ⭐⭐⭐⭐⭐ <span class="rating-count">987 verified ratings</span>
             </div>
@@ -77,17 +123,91 @@
                 <span class="feature">Spacious</span>
                 <span class="feature">Eco-Friendly</span>
             </div>
-            <p class="price">₹699 <span class="small-text">incl. all taxes</span></p>
-            <button class="add-to-cart">ADD TO CART</button>
+            <p class="price" id="product-price">₹699 <span class="small-text">incl. all taxes</span></p>
+            <button class="buy" onclick="" style="margin-bottom: 10px;">BUY NOW</button>
+            <button class="add-to-cart" onclick="addToCart()">ADD TO CART</button>
         </div>
     </div>
+
     <script>
-   function menubut() {
-    var slider = document.getElementById("slider");
-    var currentDisplay = window.getComputedStyle(slider).display;
-    slider.style.display = (currentDisplay === 'none') ? 'block' : 'none';
+        let currentImageIndex = 0;
+        let productImages = [];
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get("id");
+        if (productId) {
+            fetchProductDetails(productId);
+        }
+
+        async function fetchProductDetails(id) {
+            try {
+                const response = await fetch(`http://localhost:8000/products/${id}`);
+                const product = await response.json();
+                document.getElementById("product-name").textContent = product.ProductName;
+                document.getElementById("product-des").textContent = product.ProductDescription;
+                document.getElementById("product-price").textContent = `₹${product.Price} incl. all taxes`;
+                productImages = product.Image;
+                displayImages();
+            } catch (error) {
+                console.error("Error fetching product details:", error);
+            }
+        }
+        function addToCart() {
+    let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+    let productId = urlParams.get("id");
+
+    if (!productId) {
+        alert("Product ID not found!");
+        return;
+    }
+
+    let existingProduct = cart.find(item => item.id === productId);
+    
+    if (!existingProduct) {
+        cart.push({ id: productId, quantity: 1 });
+        localStorage.setItem("cartItems", JSON.stringify(cart));
+        alert("Product added to cart!");
+    } else {
+        alert("Product is already in the cart!");
+    }
 }
 
+
+        function displayImages() {
+            const imageWrapper = document.getElementById("image-wrapper");
+            imageWrapper.innerHTML = "";
+            productImages.forEach((imgSrc, index) => {
+                const imgElement = document.createElement("img");
+                imgElement.src = imgSrc;
+                imgElement.classList.add("slider-image");
+                if (index === 0) imgElement.classList.add("active");
+                imageWrapper.appendChild(imgElement);
+            });
+        }
+
+        function prevImage() {
+            if (productImages.length === 0) return;
+            currentImageIndex = (currentImageIndex - 1 + productImages.length) % productImages.length;
+            updateImage();
+        }
+
+        function nextImage() {
+            if (productImages.length === 0) return;
+            currentImageIndex = (currentImageIndex + 1) % productImages.length;
+            updateImage();
+        }
+
+        function updateImage() {
+            const images = document.querySelectorAll(".slider-image");
+            images.forEach(img => img.classList.remove("active"));
+            images[currentImageIndex].classList.add("active");
+        }
+
+        function menubut() {
+            var slider = document.getElementById("slider");
+            var currentDisplay = window.getComputedStyle(slider).display;
+            slider.style.display = (currentDisplay === 'none') ? 'block' : 'none';
+        }
     </script>
 </body>
 </html>

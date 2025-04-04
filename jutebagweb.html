@@ -6,25 +6,205 @@
     <title>Udaya Teja - Eco Friendly Jute Bags</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+     /* About Section Container */
+        /* Subscribe Section */
+        body {
+            background-color: #F0F8EC;
+            color: #2C5F2D;
+            align-items: center;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 40px 0;
+            align-items: center;
+        }
+        .container h1, h2 {
+            color: #1D3C34;
+        }
+        .container .hero {
+            background: url('https://source.unsplash.com/1600x900/?nature,green') center/cover;
+            padding: 80px 20px;
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
+        }
+        .container .section {
+            background: white;
+            padding: 40px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .container .icon {
+            font-size: 30px;
+            color: #388E3C;
+        }
+        .container .grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .container .grid-item {
+            flex: 1 1 300px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .container .cta-button {
+            background-color: #2c6e49;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .container .cta-button:hover {
+            background-color: #1D3C34;
+        }
+#subscribe {
+    text-align: center;
+    background: #F5F5F5;
+    padding: 40px 20px;
+}
+
+/* Heading */
+#subscribe h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Subscription Box */
+.subscribe-box {
+    display: flex;
+    justify-content: center;
+    max-width: 400px;
+    margin: 0 auto;
+    background: white;
+    padding: 0px;
+    border-radius: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.subscribe-box input {
+    flex: 1;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 30px 0 0 30px;
+    outline: none;
+}
+
+.subscribe-box button {
+    background: #2c6e49;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 0 30px 30px 0;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.subscribe-box button:hover {
+    background:  #1D3C34;
+}
+
+/* Social Media Section */
+
+/* Heading */
+footer h3 {
+    color: white;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+
+
+
+
+.social-icons a:hover {
+    color:  black; /* Soft green on hover */
+    transform: scale(1.1);
+}
+
+/* Footer Text */
+footer p {
+    color: white;
+    font-size: 14px;
+    margin-top: 10px;
+    opacity: 0.8;
+}
+footer .social-icons a{
+    color: white;
+        font-size: 24px;
+        margin: 0 15px;
+        text-decoration: none;
+        transition: color 0.3s, transform 0.3s ease-in-out;
+}
+/* Responsive */
+/* Responsive */
+@media (max-width: 700px) {
+    .subscribe-box {
+    display: flex;
+    justify-content: center;
+    max-width: 400px;
+    margin: 0 auto;
+    background: white;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+    .subscribe-box input {
+    
+    border-radius: 10px;
+}
+    .social-icons {
+        gap: 15px;
+    }
+
+    footer p {
+        font-size: 12px;
+    }
+    .subscribe-box {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .subscribe-box input, .subscribe-box button {
+        border-radius: 10px;
+    }
+}
+    </style>
 </head>
 <body>
     <div class="slider" id="slider">
-        
         <div class="logo-container">
-            <div class="menu"><button onclick="menubut()">&#9776;</button></div>
+            <span class="brand-name">Udaya Teja</span>
+            <div class="menu"><button onclick="menubut()">x</button></div>
         </div>
         <ul>
-            <li><a href="jutebagweb.html">Home</a></li><hr>
-            <li><a href="shop.html">Shop</a></li> <hr> <!-- Redirects to shop.html -->
-            <li><a href="./jutebagweb.html#about">About</a></li><hr>
-            <li><a href="./jutebagweb.html#contact">Contact</a></li><hr>
+            <li><a href="jutebagweb.html">🏡 Home</a></li><hr>
+            <li><a href="shop.html">🛍️ Shop</a></li> <hr>
+            <li><a href="./jutebagweb.html#about"><span style="padding-right: 10px;">ⓘ</span>About</a></li><hr>
+            <li><a href="./jutebagweb.html#contact">📞 Contact</a></li><hr>
         </ul>
+        <div class="back-logo">
+            <img src="images/logo.png" alt="Udaya Teja Logo">
+        </div>
         <div class="social-icons">
             <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i></a>
         </div>
         
+
     </div>
     <header>
         <div class="header-container">
@@ -36,16 +216,15 @@
             <nav>
                 <ul>
                     <li><a href="jutebagweb.html">Home</a></li>
-                    <li><a href="shop.html">Shop</a></li>  <!-- Redirects to shop.html -->
+                    <li><a href="shop.html">Shop</a></li>
                     <li><a href="./jutebagweb.html#about">About</a></li>
                     <li><a href="./jutebagweb.html#contact">Contact</a></li>
                 </ul>
             </nav>
-            <div>
+            <div class="cart-icon">
                 <a href="cart.html">
                     <img src="images/cart.png" alt="not found" height="60px" width="60px">
                 </a>
-
             </div>
         </div>
     </header>
@@ -57,7 +236,7 @@
     <section id="hero">
         <div class="hero-content">
             <h1>Eco-Friendly Jute Bags</h1>
-            <p>Shop sustainable and stylish jute bags for everyday use.</p>
+            <p >Shop sustainable and stylish jute bags for everyday use.</p>
             <a href="shop.html" class="btn">Shop Now</a>
         </div>
     </section>
@@ -84,40 +263,72 @@
     
     </section>
 
-    <section id="about">
-        <h2>About Us</h2>
-        <h3>Our Story</h3>
-        <p>At <strong>Udaya Teja</strong>, we believe that sustainability and style should go hand in hand. Our journey started with a simple idea—to reduce plastic waste by offering a greener alternative. We wanted to create something that is <strong>eco-friendly, stylish, and durable</strong>, and that's how our collection of premium <strong>jute bags</strong> was born.</p>
-        
-        <h3>Why Jute Bags?</h3>
-        <ul>
-            <li><strong>100% Biodegradable & Eco-friendly</strong> – Unlike plastic, jute decomposes naturally, leaving no harm to the environment.</li>
-            <li><strong>Durable & Reusable</strong> – Our jute bags are designed to last, making them a perfect companion for shopping, work, or travel.</li>
-            <li><strong>Sustainable Farming</strong> – Jute requires minimal water and pesticides, making it an earth-friendly crop.</li>
-        </ul>
-        
-        <h3>Craftsmanship & Quality</h3>
-        <p>Each of our bags is crafted with precision to offer you a blend of elegance and strength. Whether it's a simple tote or an intricate printed design, we ensure:</p>
-        <ul>
-            <li><strong>High-quality stitching</strong> for long-lasting use</li>
-            <li><strong>Trendy and practical designs</strong> that match every occasion</li>
-            <li><strong>Eco-conscious printing</strong> using natural dyes</li>
-        </ul>
-        
-        <h3>Our Eco-Friendly Commitment</h3>
-        <p>Sustainability is at the core of everything we do. From ethically sourced materials to eco-friendly production, we take steps to reduce our carbon footprint. <strong>By choosing Udaya Teja, you’re making a conscious decision to support a greener planet.</strong></p>
+    
+    <div class="container" id="about">
+        <div class="section">
+            <h2>Our Journey</h2>
+            <p> Welcome to <strong>Udaya Teja</strong>, where <em>sustainability meets style</em>.  
+                Our mission began with a simple yet powerful idea—to reduce plastic waste by introducing an eco-friendly alternative.  
+                We envisioned a product that’s not only <strong>durable</strong> and <strong>fashionable</strong> but also kind to our planet.  
+                That’s how our collection of <span style="color: #2C5F2D; font-weight: bold;">premium jute bags</span> was born.</p>
+        </div>
+        <div class="section">
+            <h2>Why Choose Jute Bags?</h2>
+            <div class="grid">
+                <div class="grid-item">
+                    <i class="fas fa-recycle icon"></i>
+                    <h3>Eco-Friendly</h3>
+                    <p>100% biodegradable and sustainable.</p>
+                </div>
+                <div class="grid-item">
+                    <i class="fas fa-seedling icon"></i>
+                    <h3>Built to Last</h3>
+                    <p>Strong, stylish, and durable for everyday use.</p>
+                </div>
+                <div class="grid-item">
+                    <i class="fas fa-hand-holding-water icon"></i>
+                    <h3>Water Efficient</h3>
+                    <p>Requires minimal water and pesticides.</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Craftsmanship & Quality</h2>
+            <p>Designed with high-quality stitching, trendy designs, and eco-conscious printing.</p>
+        </div>
+        <div class="section">
+            <h2>Our Commitment to a Greener Future</h2>
+            <p>Every purchase contributes to reducing plastic waste and promoting sustainability.</p>
+            <button class="cta-button">Explore Our Collection</button>
+        </div>
+    </div>
+    <section id="subscribe">
+        <h2>Sign Up For Updates</h2>
+        <div class="subscribe-box">
+            <input type="email" placeholder="Enter Your Email" required>
+            <button>SUBSCRIBE</button>
+        </div>
     </section>
-
-    <section id="contact">
-        <h2>Get in Touch</h2>
-        <p>Email: info@udayateja.com | Phone: +123 456 7890</p>
-    </section>
-
-    <footer>
-        <p>&copy; 2025 Udaya Teja. All rights reserved.</p>
+    <footer id="contact">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>&copy; 2025 Udaya Teja. <em>Crafting Sustainability, One Bag at a Time.</em> </p>
     </footer>
-
     <script>
+       function toggleContent(id) {
+    var content = document.getElementById(id);
+    
+    // Check if screen width is less than 700px
+}
+
+// Ensure correct visibility on window resize
+
+
+
         function menubut() {
             var slider = document.getElementById("slider");
             var currentDisplay = window.getComputedStyle(slider).display;
@@ -138,11 +349,11 @@
                 alert("Item added to cart!"); // Simulating add-to-cart functionality
                 window.location.href = "products.html";
             }
-    
+            
             const bestsellers = [
                 { id: 1, name: "Classic Jute Bag", price: "$15.99", img: "images/img1.jpg" },
                 { id: 2, name: "Eco Tote", price: "$12.99", img: "images/img2.jpg" },
-                { id: 3, name: "Handcrafted Jute Bag", price: "$18.99", img: "images/img3.jpg" }
+                { id: 3, name: "Handcrafted Jute Bag", price: "$18.99", img: "images/img3.jpg" },
             ];
     
             const latestProducts = [

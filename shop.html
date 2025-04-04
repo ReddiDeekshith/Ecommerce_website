@@ -10,19 +10,25 @@
 <body>
     <div class="slider" id="slider">
         <div class="logo-container">
-            <div class="menu"><button onclick="menubut()">&#9776;</button></div>
+            <span class="brand-name">Udaya Teja</span>
+            <div class="menu"><button onclick="menubut()">x</button></div>
         </div>
         <ul>
             <li><a href="jutebagweb.html">Home</a></li><hr>
-            <li><a href="shop.html">Shop</a></li><hr>
+            <li><a href="shop.html">Shop</a></li> <hr>
             <li><a href="./jutebagweb.html#about">About</a></li><hr>
             <li><a href="./jutebagweb.html#contact">Contact</a></li><hr>
         </ul>
+        <div class="back-logo">
+            <img src="images/logo.png" alt="Udaya Teja Logo">
+        </div>
         <div class="social-icons">
             <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
             <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i></a>
         </div>
+        
+
     </div>
     <header>
         <div class="header-container">
@@ -39,13 +45,14 @@
                     <li><a href="./jutebagweb.html#contact">Contact</a></li>
                 </ul>
             </nav>
-            <div>
+            <div class="cart-icon">
                 <a href="cart.html">
                     <img src="images/cart.png" alt="not found" height="60px" width="60px">
                 </a>
             </div>
         </div>
     </header>
+    
 
     <section id="shop">
         <center><h2>All Products</h2></center>
@@ -53,39 +60,93 @@
     </section>
 
     <footer>
-        <p>&copy; 2025 Udaya Teja. All rights reserved.</p>
+        <p style="color: white;">&copy; 2025 Udaya Teja. All rights reserved.</p>
     </footer>
 
     <script>
-        const products = [
-            { img: "images/img1.jpg", name: "Classic Jute Bag", price: "$15.99" },
-            { img: "images/img2.jpg", name: "Eco Tote", price: "$12.99" },
-            { img: "images/img3.jpg", name: "Handcrafted Jute Bag", price: "$18.99" },
-            { img: "images/img4.jpg", name: "Elegant Jute Handbag", price: "$22.99" },
-            { img: "images/img5.jpg", name: "Floral Print Jute Bag", price: "$19.49" },
-            { img: "images/img6.jpg", name: "Stylish Carry Jute Bag", price: "$24.99" }
-        ];
+        // Fetch products from the API
+ // Fetch products from the API
+async function fetchProducts() {
+    try {
+        const response = await fetch("http://localhost:8000/products"); // Adjust API URL if needed
+        const products = await response.json();
 
+        // Select the product grid container
         const productGrid = document.querySelector(".product-grid");
+        productGrid.innerHTML = ""; // Clear previous content
 
+        // Loop through the fetched products and display them
         products.forEach(product => {
-            const productElement = document.createElement("a");
-            productElement.href = "products.html";
+            const productElement = document.createElement("div"); // Change from <a> to <div>
             productElement.classList.add("product");
+
+            // Use dataset to store product ID for navigation
+            productElement.dataset.productId = product._id;
+
             productElement.innerHTML = `
-                <img src="${product.img}" alt="${product.name}">
-                <h3>${product.name}</h3>
-                <p>${product.price}</p>
-                <button class="btn" onclick="but()">ADD TO CART</button>
+                <a href="products.html?id=${product._id}" class="product-link">
+                    <img src="${product.Image[0]}" alt="${product.ProductName}">
+                    <h3>${product.ProductName}</h3>
+                    <p>$${product.Price}</p>
+                </a>
+                <button class="btn add-to-cart" data-product-id="${product._id}">ADD TO CART</button>
             `;
+
             productGrid.appendChild(productElement);
         });
 
+        // Add event listeners for product click navigation
+        document.querySelectorAll(".product").forEach(item => {
+            item.addEventListener("click", function(event) {
+                if (!event.target.classList.contains("add-to-cart")) {
+                    window.location.href = `products.html?id=${this.dataset.productId}`;
+                }
+            });
+        });
+
+        // Add event listeners for buttons to stop navigation
+        document.querySelectorAll(".add-to-cart").forEach(button => {
+            button.addEventListener("click", function(event) {
+                event.stopPropagation(); // Prevent click event from reaching parent (product div)
+                addToCart(event.target.dataset.productId);
+            });
+        });
+
+    } catch (error) {
+        console.error("Error fetching products:", error);
+    }
+}
+
+// Function to add a product to the cart
+function addToCart(productId) {
+    let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    if (!productId) {
+        alert("Product ID not found!");
+        return;
+    }
+
+    let existingProduct = cart.find(item => item.id === productId);
+
+    if (!existingProduct) {
+        cart.push({ id: productId, quantity: 1 });
+        localStorage.setItem("cartItems", JSON.stringify(cart));
+        alert("Product added to cart!");
+    } else {
+        alert("Product is already in the cart!");
+    }
+}
+
+// Fetch products when the page loads
+document.addEventListener("DOMContentLoaded", fetchProducts);
+
+        // Toggle menu function
         function menubut() {
             var slider = document.getElementById("slider");
             var currentDisplay = window.getComputedStyle(slider).display;
             slider.style.display = (currentDisplay === 'none') ? 'block' : 'none';
         }
     </script>
+    
 </body>
 </html>
