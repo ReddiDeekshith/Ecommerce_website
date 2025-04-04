@@ -175,7 +175,6 @@ h2 {
     gap: 20px;
     justify-content: center;
     align-items: stretch; /* Ensures all items have equal height */
-    max-width: 1200px;
     margin: auto;
 }
 
@@ -326,10 +325,11 @@ footer {
 .hero-content{
     margin: 10px;
 }
-
+    
 
     .product-grid{
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        padding: auto;
+        grid-template-columns: repeat(2,1fr);
     }
     nav{
         display: none;
