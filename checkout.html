@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - Jute Bags</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .card {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .card h2 {
+      margin-bottom: 1rem;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    .flex {
+      display: flex;
+      gap: 1rem;
+    }
+    .order-summary ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .order-summary li {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    .total {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+    }
+    button {
+      background-color: #0a8754;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #066c42;
+    }
+    .payment-section, .billing-section {
+      margin-top: 2rem;
+    }
+    .payment-option1 {
+      display: flex;
+      flex-direction: row;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 1rem;
+      text-align: center;
+      margin-bottom: 1rem;
+      background-color: #f9f9f9;
+    }
+    .payment-option1 input[type="radio"] {
+      height: 15px;
+      width: 15px;
+      margin-top: 18px;
+    }
+    li span {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-align: center;
+    }
+    
+    @media (max-width:700px) {
+      .container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem;
+        max-width: 1000px;
+        margin: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h2>Shipping Details</h2>
+      <form id="checkoutForm">
+        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="tel" name="phone" placeholder="Phone Number" required />
+        <textarea name="address" placeholder="Full Address" required></textarea>
+        <div class="flex">
+          <input type="text" name="city" placeholder="City" required />
+          <input type="text" name="zip" placeholder="PIN Code" required />
+        </div>
+
+        <div class="payment-section">
+          <h2>Payment</h2>
+          <div class="payment-option1">
+            <input type="radio" name="paymentMethod" value="pyt" checked/> 
+            <p>Online Payment Through Phonepay/googlepay</p>
+          </div>
+          <div class="payment-option1">
+            <input type="radio" name="paymentMethod" value="cod" /> 
+            <p>Cash On Delivery (COD)</p>
+          </div>
+          
+        </div>
+      </form>
+    </div>
+
+    <div class="card order-summary">
+      <h2>Order Summary</h2>
+      <ul id="cartItems"></ul>
+      <div class="total">
+        <span>Total</span>
+        <span id="totalPrice">₹0</span>
+      </div>
+      <button onclick="handleCheckout()">Place Order</button>
+    </div>
+  </div>
+
+  <script>
+    let order = JSON.parse(localStorage.getItem("orderItems")) || [];
+    const cartItems = document.getElementById("cartItems");
+    const totalPrice = document.getElementById("totalPrice");
+    const selected = document.querySelector('input[name="paymentMethod"]:checked');
+
+    function renderCart() {
+      let total = 0;
+      cartItems.innerHTML = "";
+      order.forEach(item => {
+        const li = document.createElement("li");
+        li.innerHTML = `<span><img src="${item.image}" height="40"> <p>x ${item.quantity}</p></span><span>₹${item.quantity * item.price}</span>`;
+        cartItems.appendChild(li);
+        total += item.quantity * item.price;
+      });
+      totalPrice.textContent = `₹${total}`;
+    }
+
+    async function handleCheckout() {
+      const form = document.getElementById("checkoutForm");
+
+      if (!form.checkValidity()) {
+        alert("Please fill all shipping details correctly.");
+        return;
+      }
+
+      const formData = new FormData(form);
+
+      const orders = order.map(item => ({
+        product: item.name || "Unknown",
+        quantity: item.quantity,
+        image:item.image,
+        price: item.price
+      }));
+
+      const data = {
+        Name: formData.get("name"),
+        Email: formData.get("email"),
+        PhoneNumber: Number(formData.get("phone")),
+        Address: formData.get("address"),
+        City: formData.get("city"),
+        PinCode: Number(formData.get("zip")),
+        orders: orders,
+        PaymentMode: selected.value
+      };
+
+      try {
+        const res = await fetch("http://localhost:8000/add-orders", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+        const result = await res.json();
+        alert(result.message || "Order placed with Cash On Delivery!");
+      } catch (error) {
+        alert("Error placing order. Please try again.");
+        console.error(error);
+      }
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>

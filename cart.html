@@ -8,30 +8,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-    <div class="slider" id="slider">
-        <div class="logo-container">
-            <span class="brand-name">Udaya Teja</span>
-            <div class="menu"><button onclick="menubut()">x</button></div>
+    <div class="sidebar" id="sidebar">
+        <center><div>
+            <h1>Udaya Teja</h1>
+            <img src="images/logo.png" height="80px">
+            <h5>-Eco-friendly Jute Bags</h5>
+            <button class="close-btn" id="closeBtn">&times;</button>
+            
+            
+            <nav><hr>
+                <a href="jutebagweb.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="./jutebagweb.html#about">About</a>
+                <a href="./jutebagweb.html#contact">Contact</a>
+            </nav>
+        </div></center>
+        <div class="contact">
+            
+            <div class="social-icons">
+                <a href="https://www.instagram.com/udayateja_enterprises?igsh=c2NuMWI1dG44ZTJq" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i></a>
+            </div>
         </div>
-        <ul>
-            <li><a href="jutebagweb.html">Home</a></li><hr>
-            <li><a href="shop.html">Shop</a></li> <hr>
-            <li><a href="./jutebagweb.html#about">About</a></li><hr>
-            <li><a href="./jutebagweb.html#contact">Contact</a></li><hr>
-        </ul>
-        <div class="back-logo">
-            <img src="images/logo.png" alt="Udaya Teja Logo">
-        </div>
-        <div class="social-icons">
-            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i></a>
-        </div>
-        
     </div>
+    
     <header>
         <div class="header-container">
-            <div class="menu"><button onclick="menubut()">&#9776;</button></div>
+            <button class="menu-toggle" id="openBtn">&#9776;</button>
             <div class="logo-container">
                 <img src="images/logo.jpg" alt="Udaya Teja Logo" class="logo-img">
                 <span class="brand-name">Udaya Teja</span>
@@ -48,41 +52,66 @@
         </div>
         
     </header>
-
+    
     <section id="cart">
         <h2>Your Shopping Cart</h2>
         <div id="cart-items"></div>
         <div class="cart-summary">
             <p>Total Price: <span id="total-price">₹0</span></p>
-            <button class="checkout-btn">CHECKOUT</button>
+            <button class="checkout-btn" onclick="checkout()">CHECKOUT</button>
         </div>
     </section>
 
     <script>
+        let order = [];
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+        }
+        const sidebar = document.getElementById('sidebar');
+        const openBtn = document.getElementById('openBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        openBtn.addEventListener('click', () => {
+            sidebar.classList.add('open');
+        });
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+        });
+        const navLinks = document.querySelectorAll('.sidebar nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                sidebar.classList.remove('open'); // auto-close on click
+            });
+        });
         document.addEventListener("DOMContentLoaded", async () => {
+            localStorage.removeItem('orderItems');
             let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
             console.log(cart);
             const cartItemsContainer = document.getElementById("cart-items");
             let totalPrice = 0;
-            
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
                 document.getElementById("total-price").textContent = `₹0`;
                 return;
             }
-
             // Fetch product details for each cart item
             const productDetails = await Promise.all(cart.map(item => fetchProductDetails(item.id)));
 
             cartItemsContainer.innerHTML = "";
             productDetails.forEach((product, index) => {
                 if (!product) return;
-
+                
                 let productPrice = parseFloat(product.Price) || 0;
                 let quantity = cart[index].quantity || 1;
                 cart[index].price = productPrice;  // Ensure price is stored in cart
                 totalPrice += productPrice * quantity;
-
+                order.push({
+                    id:product.id,
+                    image:product.Image[0],
+                    quantity:quantity,
+                    price:productPrice,
+                });
                 cartItemsContainer.innerHTML += `
                     <div class="cart-item" data-index="${index}">
                         <img src="${product.Image[0]}" class="cart-img" alt="${product.ProductName}">
@@ -102,8 +131,15 @@
 
             document.getElementById("total-price").textContent = `₹${totalPrice.toFixed(2)}`;
             window.cart = cart;
+            window.order=order;
+            
         });
-
+        function checkout()
+            {
+                console.log(order);
+                localStorage.setItem("orderItems", JSON.stringify(window.order));
+                window.location.href = 'checkout.html';
+            }
         async function fetchProductDetails(id) {
             try {
                 const response = await fetch(`http://localhost:8000/products/${id}`);
@@ -123,6 +159,7 @@
 
             if (quantity + amount > 0) {
                 window.cart[index].quantity += amount;
+                window.order[index].quantity+=amount;
             } else {
                 removeItem(index);
                 return;

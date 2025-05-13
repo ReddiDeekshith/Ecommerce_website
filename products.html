@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -55,32 +56,39 @@
         }
     </style>
 </head>
-<body>
-    <div class="slider" id="slider">
-        <div class="logo-container">
-            <span class="brand-name">Udaya Teja</span>
-            <div class="menu"><button onclick="menubut()">x</button></div>
-        </div>
-        <ul>
-            <li><a href="jutebagweb.html">Home</a></li><hr>
-            <li><a href="shop.html">Shop</a></li> <hr>
-            <li><a href="./jutebagweb.html#about">About</a></li><hr>
-            <li><a href="./jutebagweb.html#contact">Contact</a></li><hr>
-        </ul>
-        <div class="back-logo">
-            <img src="images/logo.png" alt="Udaya Teja Logo">
-        </div>
-        <div class="social-icons">
-            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i></a>
-        </div>
-        
 
+<body>
+    <div class="sidebar" id="sidebar">
+        <center>
+            <div>
+                <h1>Udaya Teja</h1>
+                <img src="images/logo.png" height="80px">
+                <h5>-Eco-friendly Jute Bags</h5>
+                <button class="close-btn" id="closeBtn">&times;</button>
+
+
+                <nav>
+                    <hr>
+                    <a href="jutebagweb.html">Home</a>
+                    <a href="shop.html">Shop</a>
+                    <a href="./jutebagweb.html#about">About</a>
+                    <a href="./jutebagweb.html#contact">Contact</a>
+                </nav>
+            </div>
+        </center>
+        <div class="contact">
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com/udayateja_enterprises?igsh=c2NuMWI1dG44ZTJq" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
     </div>
     <header>
         <div class="header-container">
-            <div class="menu"><button onclick="menubut()">&#9776;</button></div>
+            <button class="menu-toggle" id="openBtn">&#9776;</button>
             <div class="logo-container">
                 <img src="images/logo.jpg" alt="Udaya Teja Logo" class="logo-img">
                 <span class="brand-name">Udaya Teja</span>
@@ -97,10 +105,11 @@
                 <a href="cart.html">
                     <img src="images/cart.png" alt="not found" height="60px" width="60px">
                 </a>
+                <div class="count" id="count">1</div>
             </div>
         </div>
     </header>
-    
+
     <div class="product-container">
         <div class="product-image">
             <div class="image-slider" id="image-slider">
@@ -112,11 +121,10 @@
         <div class="product-details">
             <h1 id="product-name">Classic Jute Bag</h1>
             <p id="product-des">Classic Jute Bag</p>
-            <div class="ratings">
-                ⭐⭐⭐⭐⭐ <span class="rating-count">987 verified ratings</span>
-            </div>
+
             <p class="highlights">
-                <strong>Reduces:</strong> <span class="highlight">Plastic Waste</span> <span class="highlight">Eco-Footprint</span>
+                <strong>Reduces:</strong> <span class="highlight">Plastic Waste</span> <span
+                    class="highlight">Eco-Footprint</span>
             </p>
             <div class="features">
                 <span class="feature highlight-bold">Durable</span>
@@ -124,12 +132,49 @@
                 <span class="feature">Eco-Friendly</span>
             </div>
             <p class="price" id="product-price">₹699 <span class="small-text">incl. all taxes</span></p>
-            <button class="buy" onclick="" style="margin-bottom: 10px;">BUY NOW</button>
+            <button class="buy" onclick="buy()" style="margin-bottom: 10px;">BUY NOW</button>
             <button class="add-to-cart" onclick="addToCart()">ADD TO CART</button>
         </div>
     </div>
 
     <script>
+        function load() {
+            let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+            let size = cart.length;
+            document.getElementById("count").innerText = size;
+        }
+        load();
+        var order = [];
+        var id, image, price;
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+
+            // Check if screen width is less than 700px
+        }
+
+        // Ensure correct visibility on window resize
+
+
+
+        const sidebar = document.getElementById('sidebar');
+        const openBtn = document.getElementById('openBtn');
+        const closeBtn = document.getElementById('closeBtn');
+
+        openBtn.addEventListener('click', () => {
+            sidebar.classList.add('open');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+        });
+        const navLinks = document.querySelectorAll('.sidebar nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                sidebar.classList.remove('open'); // auto-close on click
+            });
+        });
         let currentImageIndex = 0;
         let productImages = [];
 
@@ -147,30 +192,47 @@
                 document.getElementById("product-des").textContent = product.ProductDescription;
                 document.getElementById("product-price").textContent = `₹${product.Price} incl. all taxes`;
                 productImages = product.Image;
+                id = id;
+                image = product.Image[0];
+                price = product.Price;
                 displayImages();
             } catch (error) {
                 console.error("Error fetching product details:", error);
             }
         }
+        function buy() {
+            order.push({
+                id: id,
+                image: image,
+                quantity: 1,
+                price: price,
+            });
+            window.order = order;
+            localStorage.setItem("orderItems", JSON.stringify(window.order));
+            window.location.href = 'checkout.html';
+        }
         function addToCart() {
-    let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
-    let productId = urlParams.get("id");
+            let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+            let productId = urlParams.get("id");
 
-    if (!productId) {
-        alert("Product ID not found!");
-        return;
-    }
+            if (!productId) {
+                alert("Product ID not found!");
+                return;
+            }
 
-    let existingProduct = cart.find(item => item.id === productId);
-    
-    if (!existingProduct) {
-        cart.push({ id: productId, quantity: 1 });
-        localStorage.setItem("cartItems", JSON.stringify(cart));
-        alert("Product added to cart!");
-    } else {
-        alert("Product is already in the cart!");
-    }
-}
+            let existingProduct = cart.find(item => item.id === productId);
+
+            if (!existingProduct) {
+                cart.push({ id: productId, quantity: 1 });
+                localStorage.setItem("cartItems", JSON.stringify(cart));
+                alert("Product added to cart!");
+            } else {
+                alert("Product is already in the cart!");
+            }
+            cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+            let size = cart.length;
+            document.getElementById("count").innerText = size;
+        }
 
 
         function displayImages() {
@@ -210,4 +272,5 @@
         }
     </script>
 </body>
+
 </html>

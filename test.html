@@ -1,111 +1,199 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Udaya Teja</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #F0F8EC;
-            color: #2C5F2D;
-            text-align: center;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 40px 0;
-        }
-        h1, h2 {
-            color: #1D3C34;
-        }
-        .hero {
-            background: url('https://source.unsplash.com/1600x900/?nature,green') center/cover;
-            padding: 80px 20px;
-            color: white;
-            font-size: 2em;
-            font-weight: bold;
-        }
-        .section {
-            background: white;
-            padding: 40px;
-            margin: 20px 0;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-        }
-        .icon {
-            font-size: 30px;
-            color: #388E3C;
-        }
-        .grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-        .grid-item {
-            flex: 1 1 300px;
-            max-width: 300px;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        .cta-button {
-            background-color: #2C5F2D;
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .cta-button:hover {
-            background-color: #1D3C34;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Udaya Teja | Modern Green UI</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #d1fae5, #86efac);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(to right, #047857, #065f46);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 25px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .icons i {
+      font-size: 1.3rem;
+      cursor: pointer;
+      margin-left: 20px;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 260px;
+      height: 100%;
+      backdrop-filter: blur(20px);
+      background: rgba(5, 150, 105, 0.7);
+      box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+      transition: left 0.4s ease;
+      z-index: 100;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar.open {
+      left: 0;
+    }
+
+    .sidebar .close-btn {
+      align-self: flex-end;
+      font-size: 1.3rem;
+      cursor: pointer;
+      color: white;
+    }
+
+    .sidebar h2 {
+      font-size: 1.5rem;
+      margin: 20px 0;
+      text-align: center;
+      color: #d1fae5;
+      font-weight: 600;
+    }
+
+    .sidebar nav {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .sidebar nav a {
+      text-decoration: none;
+      padding: 12px 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .sidebar nav a:hover {
+      background: #10b981;
+      color: #fff;
+      transform: translateX(5px);
+    }
+
+    .social-icons {
+      margin-top: auto;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px;
+    }
+
+    .social-icons i {
+      color: #ffffff;
+      font-size: 1.2rem;
+      transition: transform 0.3s;
+    }
+
+    .social-icons i:hover {
+      transform: scale(1.3);
+    }
+
+    main {
+      padding: 50px 30px;
+      text-align: center;
+      color: #064e3b;
+    }
+
+    main h1 {
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+    }
+
+    main p {
+      font-size: 1rem;
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    @media (max-width: 500px) {
+      .sidebar {
+        width: 85%;
+      }
+
+      .logo {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <div class="container">
-        <div class="section">
-            <h2>Our Journey</h2>
-            <p> Welcome to <strong>Udaya Teja</strong>, where <em>sustainability meets style</em>.  
-                Our mission began with a simple yet powerful idea—to reduce plastic waste by introducing an eco-friendly alternative.  
-                We envisioned a product that’s not only <strong>durable</strong> and <strong>fashionable</strong> but also kind to our planet.  
-                That’s how our collection of <span style="color: #2C5F2D; font-weight: bold;">premium jute bags</span> was born.</p>
-        </div>
-        <div class="section">
-            <h2>Why Choose Jute Bags?</h2>
-            <div class="grid">
-                <div class="grid-item">
-                    <i class="fas fa-recycle icon"></i>
-                    <h3>Eco-Friendly</h3>
-                    <p>100% biodegradable and sustainable.</p>
-                </div>
-                <div class="grid-item">
-                    <i class="fas fa-seedling icon"></i>
-                    <h3>Built to Last</h3>
-                    <p>Strong, stylish, and durable for everyday use.</p>
-                </div>
-                <div class="grid-item">
-                    <i class="fas fa-hand-holding-water icon"></i>
-                    <h3>Water Efficient</h3>
-                    <p>Requires minimal water and pesticides.</p>
-                </div>
-            </div>
-        </div>
-        <div class="section">
-            <h2>Craftsmanship & Quality</h2>
-            <p>Designed with high-quality stitching, trendy designs, and eco-conscious printing.</p>
-        </div>
-        <div class="section">
-            <h2>Our Commitment to a Greener Future</h2>
-            <p>Every purchase contributes to reducing plastic waste and promoting sustainability.</p>
-            <button class="cta-button">Explore Our Collection</button>
-        </div>
+
+  <header>
+    <div class="logo">Udaya Teja</div>
+    <div class="icons">
+      <i class="fas fa-bars" onclick="toggleSidebar()"></i>
+      <i class="fas fa-shopping-cart"></i>
     </div>
+  </header>
+
+  <div class="sidebar" id="sidebar">
+    <i class="fas fa-times close-btn" onclick="toggleSidebar()"></i>
+    <h2>Navigation</h2>
+    <nav>
+      <a href="#"><i class="fas fa-home"></i> Home</a>
+      <a href="#"><i class="fas fa-store"></i> Shop</a>
+      <a href="#"><i class="fas fa-address-card"></i> About</a>
+      <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+    </nav>
+    <div class="social-icons">
+      <i class="fab fa-instagram"></i>
+      <i class="fab fa-facebook"></i>
+      <i class="fas fa-envelope"></i>
+    </div>
+  </div>
+
+  <main>
+    <h1>Explore Udaya Teja's Store</h1>
+    <p>Welcome to our beautifully crafted modern sidebar design with a refreshing green theme. Navigate with ease and
+      style. Fully responsive and visually elegant.</p>
+  </main>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("open");
+    }
+  </script>
+
 </body>
+
 </html>

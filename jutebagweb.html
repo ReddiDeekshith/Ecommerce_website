@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
-     /* About Section Container */
+        /* About Section Container */
         /* Subscribe Section */
         body {
             background-color: #F0F8EC;
@@ -15,22 +16,28 @@
             align-items: center;
             text-align: center;
         }
+
         .container {
             width: 80%;
             margin: auto;
             padding: 40px 0;
             align-items: center;
         }
-        .container h1, h2 {
+
+        .container h1,
+        h2 {
             color: #1D3C34;
         }
+
         .container .hero {
-            background: url('https://source.unsplash.com/1600x900/?nature,green') center/cover;
+            background-image: url('./images/background-image.png');
+            /*background: url('https://source.unsplash.com/1600x900/?nature,green') center/cover;*/
             padding: 80px 20px;
             color: white;
             font-size: 2em;
             font-weight: bold;
         }
+
         .container .section {
             background: white;
             padding: 40px;
@@ -38,22 +45,26 @@
             border-radius: 10px;
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
         }
+
         .container .icon {
             font-size: 30px;
             color: #388E3C;
         }
+
         .container .grid {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
         }
+
         .container .grid-item {
             flex: 1 1 300px;
             padding: 20px;
             border-radius: 10px;
             text-align: center;
         }
+
         .container .cta-button {
             background-color: #2c6e49;
             color: white;
@@ -64,151 +75,165 @@
             cursor: pointer;
             transition: 0.3s;
         }
+
         .container .cta-button:hover {
             background-color: #1D3C34;
         }
-#subscribe {
-    text-align: center;
-    background: #F5F5F5;
-    padding: 40px 20px;
-}
 
-/* Heading */
-#subscribe h2 {
-    font-size: 22px;
-    color: #333;
-    margin-bottom: 15px;
-}
+        #subscribe {
+            text-align: center;
+            background: #F5F5F5;
+            padding: 40px 20px;
+        }
 
-/* Subscription Box */
-.subscribe-box {
-    display: flex;
-    justify-content: center;
-    max-width: 400px;
-    margin: 0 auto;
-    background: white;
-    padding: 0px;
-    border-radius: 30px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
+        /* Heading */
+        #subscribe h2 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 15px;
+        }
 
-.subscribe-box input {
-    flex: 1;
-    border: none;
-    padding: 12px;
-    font-size: 16px;
-    border-radius: 30px 0 0 30px;
-    outline: none;
-}
+        /* Subscription Box */
+        .subscribe-box {
+            display: flex;
+            justify-content: center;
+            max-width: 400px;
+            margin: 0 auto;
+            background: white;
+            padding: 0px;
+            border-radius: 30px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
 
-.subscribe-box button {
-    background: #2c6e49;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    font-size: 16px;
-    border-radius: 0 30px 30px 0;
-    cursor: pointer;
-    transition: 0.3s;
-}
+        .subscribe-box input {
+            flex: 1;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 30px 0 0 30px;
+            outline: none;
+        }
 
-.subscribe-box button:hover {
-    background:  #1D3C34;
-}
+        .subscribe-box button {
+            background: #2c6e49;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-/* Social Media Section */
+        .subscribe-box button:hover {
+            background: #1D3C34;
+        }
 
-/* Heading */
-footer h3 {
-    color: white;
-    margin-bottom: 10px;
-    font-size: 20px;
-}
+        /* Social Media Section */
 
-
-
+        /* Heading */
+        footer h3 {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
 
 
-.social-icons a:hover {
-    color:  black; /* Soft green on hover */
-    transform: scale(1.1);
-}
 
-/* Footer Text */
-footer p {
-    color: white;
-    font-size: 14px;
-    margin-top: 10px;
-    opacity: 0.8;
-}
-footer .social-icons a{
-    color: white;
-        font-size: 24px;
-        margin: 0 15px;
-        text-decoration: none;
-        transition: color 0.3s, transform 0.3s ease-in-out;
-}
-/* Responsive */
-/* Responsive */
-@media (max-width: 700px) {
-    .subscribe-box {
-    display: flex;
-    justify-content: center;
-    max-width: 400px;
-    margin: 0 auto;
-    background: white;
-    padding: 5px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-    .subscribe-box input {
-    
-    border-radius: 10px;
-}
-    .social-icons {
-        gap: 15px;
-    }
 
-    footer p {
-        font-size: 12px;
-    }
-    .subscribe-box {
-        flex-direction: column;
-        gap: 10px;
-    }
 
-    .subscribe-box input, .subscribe-box button {
-        border-radius: 10px;
-    }
-}
+        .social-icons a:hover {
+            color: black;
+            /* Soft green on hover */
+            transform: scale(1.1);
+        }
+
+        /* Footer Text */
+        footer p {
+            color: white;
+            font-size: 14px;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        footer .social-icons a {
+            color: white;
+            font-size: 24px;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s, transform 0.3s ease-in-out;
+        }
+
+        /* Responsive */
+        /* Responsive */
+        @media (max-width: 700px) {
+            .subscribe-box {
+                display: flex;
+                justify-content: center;
+                max-width: 400px;
+                margin: 0 auto;
+                background: white;
+                padding: 5px;
+                border-radius: 10px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .subscribe-box input {
+
+                border-radius: 10px;
+            }
+
+            .social-icons {
+                gap: 15px;
+            }
+
+            footer p {
+                font-size: 12px;
+            }
+
+            .subscribe-box {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .subscribe-box input,
+            .subscribe-box button {
+                border-radius: 10px;
+            }
+        }
     </style>
 </head>
-<body>
-    <div class="slider" id="slider">
-        <div class="logo-container">
-            <span class="brand-name">Udaya Teja</span>
-            <div class="menu"><button onclick="menubut()">x</button></div>
-        </div>
-        <ul>
-            <li><a href="jutebagweb.html">🏡 Home</a></li><hr>
-            <li><a href="shop.html">🛍️ Shop</a></li> <hr>
-            <li><a href="./jutebagweb.html#about"><span style="padding-right: 10px;">ⓘ</span>About</a></li><hr>
-            <li><a href="./jutebagweb.html#contact">📞 Contact</a></li><hr>
-        </ul>
-        <div class="back-logo">
-            <img src="images/logo.png" alt="Udaya Teja Logo">
-        </div>
-        <div class="social-icons">
-            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
-            <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i></a>
-        </div>
-        
 
+<body>
+    <div class="sidebar" id="sidebar">
+        <div>
+            <h1>Udaya Teja</h1>
+            <img src="images/logo.png" height="80px">
+            <h5>-Eco-friendly Jute Bags</h5>
+            <button class="close-btn" id="closeBtn">&times;</button>
+
+
+            <nav>
+                <hr>
+                <a href="jutebagweb.html">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="./jutebagweb.html#about">About</a>
+                <a href="./jutebagweb.html#contact">Contact</a>
+            </nav>
+        </div>
+        <div class="contact">
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com/udayateja_enterprises?igsh=c2NuMWI1dG44ZTJq" target="_blank"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
     </div>
     <header>
         <div class="header-container">
-            <div class="menu"><button onclick="menubut()">&#9776;</button></div>
+            <button class="menu-toggle" id="openBtn">&#9776;</button>
             <div class="logo-container">
                 <img src="images/logo.jpg" alt="Udaya Teja Logo" class="logo-img">
                 <span class="brand-name">Udaya Teja</span>
@@ -225,52 +250,56 @@ footer .social-icons a{
                 <a href="cart.html">
                     <img src="images/cart.png" alt="not found" height="60px" width="60px">
                 </a>
+                <div class="count" id="count">1</div>
             </div>
         </div>
     </header>
-    
+
 
     <!-- Spacer Div -->
-    <div class="spacer"></div>    
-    
+    <div class="spacer"></div>
+
     <section id="hero">
         <div class="hero-content">
             <h1>Eco-Friendly Jute Bags</h1>
-            <p >Shop sustainable and stylish jute bags for everyday use.</p>
+            <p>Shop sustainable and stylish jute bags for everyday use.</p>
             <a href="shop.html" class="btn">Shop Now</a>
         </div>
     </section>
-    
+
     <section>
-    <section id="products">
-        <h2>Our Bestsellers</h2>
-        <div class="product-grid">
-           
+        <section id="products">
+            <h2>Our Bestsellers</h2>
+            <div class="product-grid">
+
+            </div>
+        </section>
+
+        <!-- Latest Products Section -->
+        <section id="latest-products">
+            <h2>Latest Products</h2>
+            <div class="product-grid">
+
+            </div>
+        </section>
+
+        <div class="view-all-container">
+            <a href="shop.html" class="btn view-all-btn">View All</a> <!-- Directly links to shop.html -->
         </div>
+
     </section>
 
-    <!-- Latest Products Section -->
-    <section id="latest-products">
-        <h2>Latest Products</h2>
-        <div class="product-grid">
-           
-        </div>
-    </section>
 
-    <div class="view-all-container">
-        <a href="shop.html" class="btn view-all-btn">View All</a> <!-- Directly links to shop.html -->
-    </div>
-    
-    </section>
-
-    
     <div class="container" id="about">
         <div class="section">
             <h2>Our Journey</h2>
-            <p> Welcome to <strong>Udaya Teja</strong>, where <em>sustainability meets style</em>.  
-                Our mission began with a simple yet powerful idea—to reduce plastic waste by introducing an eco-friendly alternative.  
-                We envisioned a product that’s not only <strong>durable</strong> and <strong>fashionable</strong> but also kind to our planet.  
-                That’s how our collection of <span style="color: #2C5F2D; font-weight: bold;">premium jute bags</span> was born.</p>
+            <p> Welcome to <strong>Udaya Teja</strong>, where <em>sustainability meets style</em>.
+                Our mission began with a simple yet powerful idea—to reduce plastic waste by introducing an eco-friendly
+                alternative.
+                We envisioned a product that’s not only <strong>durable</strong> and <strong>fashionable</strong> but
+                also kind to our planet.
+                That’s how our collection of <span style="color: #2C5F2D; font-weight: bold;">premium jute bags</span>
+                was born.</p>
         </div>
         <div class="section">
             <h2>Why Choose Jute Bags?</h2>
@@ -312,30 +341,51 @@ footer .social-icons a{
     <footer id="contact">
         <h3>Follow Us</h3>
         <div class="social-icons">
-            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com/udayateja_enterprises?igsh=c2NuMWI1dG44ZTJq" target="_blank"><i
+                    class="fab fa-instagram"></i></a>
             <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
             <a href="mailto:your-email@example.com"><i class="fas fa-envelope"></i></a>
         </div>
         <p>&copy; 2025 Udaya Teja. <em>Crafting Sustainability, One Bag at a Time.</em> </p>
     </footer>
     <script>
-       function toggleContent(id) {
-    var content = document.getElementById(id);
-    
-    // Check if screen width is less than 700px
-}
 
-// Ensure correct visibility on window resize
+        const navItems = document.querySelectorAll('nav a');
+        navItems[0].classList.add('active');
+        navItems[1].classList.remove('active');
+        function toggleContent(id) {
+            var content = document.getElementById(id);
+
+            // Check if screen width is less than 700px
+        }
+
+        // Ensure correct visibility on window resize
 
 
 
+        const sidebar = document.getElementById('sidebar');
+        const openBtn = document.getElementById('openBtn');
+        const closeBtn = document.getElementById('closeBtn');
 
-        function menubut() {
-            var slider = document.getElementById("slider");
-            var currentDisplay = window.getComputedStyle(slider).display;
-            slider.style.display = (currentDisplay === 'none') ? 'block' : 'none';
-            }
+        openBtn.addEventListener('click', () => {
+            sidebar.classList.add('open');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+        });
+        const navLinks = document.querySelectorAll('.sidebar nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                sidebar.classList.remove('open'); // auto-close on click
+            });
+        });
         document.addEventListener("DOMContentLoaded", () => {
+            let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+            let size = cart.length;
+            document.getElementById("count").innerText = size;
             if (window.location.hash) {
                 const targetId = window.location.hash.substring(1);
                 const targetElement = document.getElementById(targetId);
@@ -343,51 +393,84 @@ footer .social-icons a{
                     targetElement.scrollIntoView({ behavior: "smooth" });
                 }
             }
-    
-            
-            function but(event) {
-                event.preventDefault(); // Prevents navigation when clicking the button
-                alert("Item added to cart!"); // Simulating add-to-cart functionality
-                window.location.href = "products.html";
+
+           function addToCart(productId) {
+               
+                let cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+                if (!productId) {
+                    alert("Product ID not found!");
+                    return;
+                }
+
+                let existingProduct = cart.find(item => item.id === productId);
+
+                if (!existingProduct) {
+                    cart.push({ id: productId, quantity: 1 });
+                    localStorage.setItem("cartItems", JSON.stringify(cart));
+                    alert("Product added to cart!");
+                } else {
+                    alert("Product is already in the cart!");
+                }
+                cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+            let size = cart.length;
+            document.getElementById("count").innerText = size;
             }
-            
-            const bestsellers = [
-                { id: 1, name: "Classic Jute Bag", price: "$15.99", img: "images/img1.jpg" },
-                { id: 2, name: "Eco Tote", price: "$12.99", img: "images/img2.jpg" },
-                { id: 3, name: "Handcrafted Jute Bag", price: "$18.99", img: "images/img3.jpg" },
-            ];
-    
-            const latestProducts = [
-                { id: 4, name: "Elegant Jute Handbag", price: "$22.99", img: "images/img4.jpg" },
-                { id: 5, name: "Floral Print Jute Bag", price: "$19.49", img: "images/img5.jpg" },
-                { id: 6, name: "Stylish Carry Jute Bag", price: "$24.99", img: "images/img6.jpg" }
-            ];
-    
-            function renderProducts(products, containerSelector) {
-                const container = document.querySelector(containerSelector);
-                container.innerHTML = ""; // Clear existing content before adding
-    
-                products.forEach(product => {
-                    const productElement = document.createElement("a");
-                    productElement.href = "products.html";
-                    productElement.classList.add("product");
-                    productElement.innerHTML = `
-                        <img src="${product.img}" alt="${product.name}">
-                        <h3>${product.name}</h3>
-                        <p>${product.price}</p>
-                        <button class="btn" onclick="but(event)">ADD TO CART</button>
-                    `;
-                    container.appendChild(productElement);
-                });
+           
+            async function fetchProductDetails(id) {
+                try {
+                    const response = await fetch(`http://localhost:8000/products/${id}`);
+                    const product = await response.json();
+                    console.log(product);
+                    return product;
+                } catch (error) {
+                    console.error("Error fetching product details:", error);
+                }
             }
-    
-            // Render bestsellers in #products section
-            renderProducts(bestsellers, "#products .product-grid");
-    
-            // Render latest products in #latest-products section
-            renderProducts(latestProducts, "#latest-products .product-grid");
+            const bestsellers = fetchProductDetails('first-three');
+
+
+
+           function renderProducts(products, containerSelector) {
+    const container = document.querySelector(containerSelector);
+    container.innerHTML = ""; // Clear existing content
+
+    products.forEach(product => {
+        const productElement = document.createElement("a");
+        productElement.classList.add("product");
+
+        productElement.innerHTML = `
+            <img src="${product.Image[0]}" alt="${product.ProductName}">
+            <h3>${product.ProductName}</h3>
+            <p>₹${product.Price}</p>
+            <button class="btn">ADD TO CART</button>
+        `;
+
+        // Attach the event listener after creating the button
+        const button = productElement.querySelector("button");
+        button.addEventListener("click", () => {
+            
+            addToCart(product._id);
+        });
+
+        container.appendChild(productElement);
+    });
+}
+
+            
+            async function init() {
+                const bestsellers = await fetchProductDetails('first-three');
+                const latestProducts = await fetchProductDetails('last-three');
+                if (bestsellers) {
+                    renderProducts(bestsellers, "#products .product-grid");
+                }
+                renderProducts(latestProducts, "#latest-products .product-grid");
+            }
+
+            init();
         });
     </script>
-    
+
 </body>
+
 </html>
