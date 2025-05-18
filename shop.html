@@ -111,7 +111,7 @@
             let size = cart.length;
             document.getElementById("count").innerText = size;
             try {
-                const response = await fetch("http://localhost:8000/products"); // Adjust API URL if needed
+                const response = await fetch("https://backend-la8z.onrender.com/products"); // Adjust API URL if needed
                 const products = await response.json();
 
                 // Select the product grid container
