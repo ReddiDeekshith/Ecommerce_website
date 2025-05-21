@@ -174,14 +174,27 @@
             if (!existingProduct) {
                 cart.push({ id: productId, quantity: 1 });
                 localStorage.setItem("cartItems", JSON.stringify(cart));
-                alert("Product added to cart!");
+                showNotification("Product added to cart!");
             } else {
-                alert("Product is already in the cart!");
+                showNotification("Product is already in the cart!");
             }
             cart = JSON.parse(localStorage.getItem("cartItems")) || [];
             let size = cart.length;
             document.getElementById("count").innerText = size;
         }
+
+        function showNotification(message) {
+            const notification = document.createElement("div");
+            notification.className = "custom-notification";
+            notification.textContent = message;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 5000); // Remove after 5 seconds
+        }
+
         const navItems = document.querySelectorAll('nav a');
         navItems[1].classList.add('active');
         navItems[0].classList.remove('active');

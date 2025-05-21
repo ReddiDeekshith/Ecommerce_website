@@ -203,6 +203,30 @@
                 border-radius: 10px;
             }
         }
+
+        .custom-notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #000000;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            animation: fadeInOut 5s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -60%); }
+            10% { opacity: 1; transform: translate(-50%, -50%); }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translate(-50%, -60%); }
+        }
+
     </style>
 </head>
 
@@ -409,14 +433,27 @@
                 if (!existingProduct) {
                     cart.push({ id: productId, quantity: 1 });
                     localStorage.setItem("cartItems", JSON.stringify(cart));
-                    alert("Product added to cart!");
+                    showNotification("Product added to cart!");
                 } else {
-                    alert("Product is already in the cart!");
+                    showNotification("Product is already in the cart!");
                 }
                 cart = JSON.parse(localStorage.getItem("cartItems")) || [];
             let size = cart.length;
             document.getElementById("count").innerText = size;
             }
+
+            function showNotification(message) {
+                const notification = document.createElement("div");
+                notification.className = "custom-notification";
+                notification.textContent = message;
+
+                document.body.appendChild(notification);
+
+                setTimeout(() => {
+                    notification.remove();
+                }, 5000); // Remove after 5 seconds
+            }
+
            
             async function fetchProductDetails(id) {
                 try {
@@ -433,30 +470,30 @@
 
 
            function renderProducts(products, containerSelector) {
-    const container = document.querySelector(containerSelector);
-    container.innerHTML = ""; // Clear existing content
+                const container = document.querySelector(containerSelector);
+                container.innerHTML = ""; // Clear existing content
 
-    products.forEach(product => {
-        const productElement = document.createElement("a");
-        productElement.classList.add("product");
+                products.forEach(product => {
+                    const productElement = document.createElement("a");
+                    productElement.classList.add("product");
 
-        productElement.innerHTML = `
-            <img src="${product.Image[0]}" alt="${product.ProductName}">
-            <h3>${product.ProductName}</h3>
-            <p>₹${product.Price}</p>
-            <button class="btn">ADD TO CART</button>
-        `;
+                    productElement.innerHTML = `
+                        <img src="${product.Image[0]}" alt="${product.ProductName}">
+                        <h3>${product.ProductName}</h3>
+                        <p>₹${product.Price}</p>
+                        <button class="btn">ADD TO CART</button>
+                    `;
 
-        // Attach the event listener after creating the button
-        const button = productElement.querySelector("button");
-        button.addEventListener("click", () => {
-            
-            addToCart(product._id);
-        });
+                    // Attach the event listener after creating the button
+                    const button = productElement.querySelector("button");
+                    button.addEventListener("click", () => {
+                        
+                        addToCart(product._id);
+                    });
 
-        container.appendChild(productElement);
-    });
-}
+                    container.appendChild(productElement);
+                });
+            }
 
             
             async function init() {

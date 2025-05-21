@@ -54,6 +54,31 @@
         .arrow.right {
             right: 10px;
         }
+
+
+        .custom-notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #080a08;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            animation: fadeInOut 5s ease-in-out;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translate(-50%, -60%); }
+            10% { opacity: 1; transform: translate(-50%, -50%); }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translate(-50%, -60%); }
+        }
+
     </style>
 </head>
 
@@ -225,13 +250,25 @@
             if (!existingProduct) {
                 cart.push({ id: productId, quantity: 1 });
                 localStorage.setItem("cartItems", JSON.stringify(cart));
-                alert("Product added to cart!");
+                showNotification("Product added to cart!");
             } else {
-                alert("Product is already in the cart!");
+                showNotification("Product is already in the cart!");
             }
             cart = JSON.parse(localStorage.getItem("cartItems")) || [];
             let size = cart.length;
             document.getElementById("count").innerText = size;
+        }
+
+        function showNotification(message) {
+            const notification = document.createElement("div");
+            notification.className = "custom-notification";
+            notification.textContent = message;
+
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 5000); // Remove after 5 seconds
         }
 
 
