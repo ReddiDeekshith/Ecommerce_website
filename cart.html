@@ -100,7 +100,11 @@
 
             cartItemsContainer.innerHTML = "";
             productDetails.forEach((product, index) => {
-                if (!product) return;
+                if (!product) 
+                {
+                    removeItem(index);
+                    return;
+                }
                 
                 let productPrice = parseFloat(product.Price) || 0;
                 let quantity = cart[index].quantity || 1;
