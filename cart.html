@@ -145,11 +145,11 @@
                 const response = await fetch(`https://backend-8d89.onrender.com/products/${id}`);
                 if (!response.ok)
                 {
-                    removeItem(id);
                     throw new Error("Failed to fetch product details");
                 }
                 return await response.json();
             } catch (error) {
+                removeItemById(id);
                 console.error("Error fetching product:", error);
                 return null;
             }
@@ -183,6 +183,16 @@
                 document.getElementById("cart-items").innerHTML = "<p>Your cart is empty.</p>";
             }
         }
+   function removeItemById(id) {
+    // Filter out the item by id
+    window.cart = JSON.parse(localStorage.getItem("cartItems")) || [];
+
+    window.cart = window.cart.filter(item => item.id !== id);
+
+    // Update localStorage
+    localStorage.setItem("cartItems", JSON.stringify(window.cart));
+ }
+
 
         function updateTotalPrice() {
             let totalPrice = 0;
